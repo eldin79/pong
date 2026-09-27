@@ -1,0 +1,29 @@
+import pygame
+
+
+# Base class for game objects
+class BlockShape(pygame.sprite.Sprite):
+    containers: tuple[pygame.sprite.Group, ...]
+
+    def __init__(self, x: float, y: float, width: float, height: float) -> None:
+        # we will be using this later
+        if hasattr(self, "containers"):
+            super().__init__(*self.containers)
+        else:
+            super().__init__()
+
+        self.position: pygame.Vector2 = pygame.Vector2(x, y)
+        self.velocity = pygame.Vector2(0, 0)
+        self.width = width
+        self.height = height
+
+    def draw(self, screen: pygame.Surface) -> None:
+        # must override
+        pass
+
+    def update(self, dt: float) -> None:
+        # must override
+        pass
+
+    def collides_with(self, other: "CircleShape") -> bool:
+        pass

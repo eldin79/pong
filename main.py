@@ -1,7 +1,8 @@
 import pygame
 
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_X, PLAYER_Y, PLAYER_WIDTH, PLAYER_HEIGHT
 from ball import Ball
+from player import Player
 
 def main():
     print(f"Starting Pong with pygame version: {pygame.version.ver}")
@@ -18,8 +19,10 @@ def main():
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
 
+    Player.containers = (updatable, drawable)
     Ball.containers = (updatable, drawable)
 
+    player_one = Player(PLAYER_X, PLAYER_Y, PLAYER_WIDTH, PLAYER_HEIGHT)
     ball = Ball(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     while running:
