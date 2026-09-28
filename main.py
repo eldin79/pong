@@ -34,8 +34,14 @@ def main():
 
         updatable.update(dt)
 
-        if (ball.position.y < BALL_RADIUS or ball.position.y > SCREEN_HEIGHT - BALL_RADIUS):
+        if ball.position.y < BALL_RADIUS or ball.position.y > SCREEN_HEIGHT - BALL_RADIUS:
             ball.velocity.y *= -1
+
+        if ball.position.x < PLAYER_X + PLAYER_WIDTH + PLAYER_WIDTH / 2 and (ball.position.y >= player_one.position.y and ball.position.y <= player_one.position.y + PLAYER_HEIGHT):
+            ball.velocity.x *= -1
+
+        if ball.position.x > SCREEN_WIDTH - PLAYER_WIDTH - PLAYER_X - PLAYER_WIDTH / 2 and (ball.position.y >= player_two.position.y and ball.position.y <= player_two.position.y + PLAYER_HEIGHT):
+            ball.velocity.x *= -1
 
         for drawable_object in drawable:
             drawable_object.draw(screen)

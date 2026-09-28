@@ -34,8 +34,8 @@ class Player(BlockShape):
         distance = self.position.distance_to(other.position)
         radius = self.width / 2
         if self.facingRight:
-            radius += 0
+            radius += PLAYER_X
         else:
-            radius += 0
+            radius += SCREEN_WIDTH - PLAYER_WIDTH - PLAYER_X
         total_radius = radius + other.radius
         return distance <= total_radius

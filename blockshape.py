@@ -16,6 +16,7 @@ class BlockShape(pygame.sprite.Sprite):
         self.velocity = pygame.Vector2(0, 0)
         self.width = width
         self.height = height
+        self.radius = width / 2
 
     def draw(self, screen: pygame.Surface) -> None:
         # must override
