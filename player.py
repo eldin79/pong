@@ -33,13 +33,3 @@ class Player(BlockShape):
             if keys[pygame.K_DOWN]:
                 if self.position.y < SCREEN_HEIGHT - PLAYER_HEIGHT:
                     self.move(dt)
-
-    def collides_with(self, other: "CircleShape") -> bool:
-        distance = self.position.distance_to(other.position)
-        radius = self.width / 2
-        if self.facingRight:
-            radius += PLAYER_X
-        else:
-            radius += SCREEN_WIDTH - PLAYER_WIDTH - PLAYER_X
-        total_radius = radius + other.radius
-        return distance <= total_radius
