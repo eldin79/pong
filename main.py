@@ -21,6 +21,10 @@ def main():
     text_rect_one.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     text_rect_two.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
+    restart_text = font.render("Press R to restart", True, "green")
+    restart_rect = restart_text.get_rect()
+    restart_rect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + RESTART_TEXT_ADJUST_Y)
+
     clock = pygame.time.Clock()
     dt = 0.0
     running = True
@@ -58,10 +62,12 @@ def main():
         if ball.position.x < 0 - BALL_RADIUS:
             player_two_wins = True
             screen.blit(player_two_wins_text, text_rect_two)
+            screen.blit(restart_text, restart_rect)
 
         if ball.position.x > SCREEN_WIDTH + BALL_RADIUS:
             player_one_wins = True
             screen.blit(player_one_wins_text, text_rect_one)
+            screen.blit(restart_text, restart_rect)
 
         for drawable_object in drawable:
             drawable_object.draw(screen)
