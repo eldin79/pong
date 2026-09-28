@@ -11,6 +11,15 @@ def main():
 
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    pygame.display.set_caption("Pong")
+
+    font = pygame.font.Font(pygame.font.get_default_font(), 32)
+    player_one_wins_text = font.render("Player One Wins!", True, "red")
+    player_two_wins_text = font.render("Player Two Wins!", True, "red")
+    text_rect_one = player_one_wins_text.get_rect()
+    text_rect_two = player_two_wins_text.get_rect()
+    text_rect_one.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    text_rect_two.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     clock = pygame.time.Clock()
     dt = 0.0
@@ -34,7 +43,8 @@ def main():
                 running = False
         screen.fill("black")
 
-        updatable.update(dt)
+        if not player_one_wins and not player_two_wins:
+            updatable.update(dt)
 
         if ball.position.y < BALL_RADIUS or ball.position.y > SCREEN_HEIGHT - BALL_RADIUS:
             ball.velocity.y *= -1
@@ -47,11 +57,11 @@ def main():
 
         if ball.position.x < 0 - BALL_RADIUS:
             player_two_wins = True
-            print("Player Two Wins")
+            screen.blit(player_two_wins_text, text_rect_two)
 
         if ball.position.x > SCREEN_WIDTH + BALL_RADIUS:
             player_one_wins = True
-            print("Player One Wins")
+            screen.blit(player_one_wins_text, text_rect_one)
 
         for drawable_object in drawable:
             drawable_object.draw(screen)
