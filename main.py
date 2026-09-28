@@ -23,7 +23,7 @@ def main():
     Ball.containers = (updatable, drawable)
 
     player_one = Player(PLAYER_X, PLAYER_Y, PLAYER_WIDTH, PLAYER_HEIGHT)
-    player_two = Player(SCREEN_WIDTH - PLAYER_WIDTH - PLAYER_X, PLAYER_Y, PLAYER_WIDTH, PLAYER_HEIGHT)
+    player_two = Player(SCREEN_WIDTH - PLAYER_WIDTH - PLAYER_X, PLAYER_Y, PLAYER_WIDTH, PLAYER_HEIGHT, False)
     ball = Ball(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     while running:
