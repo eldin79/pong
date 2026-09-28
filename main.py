@@ -1,6 +1,6 @@
 import pygame
 
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_X, PLAYER_Y, PLAYER_WIDTH, PLAYER_HEIGHT
+from constants import *
 from ball import Ball
 from player import Player
 
@@ -33,6 +33,9 @@ def main():
         screen.fill("black")
 
         updatable.update(dt)
+
+        if (ball.position.y < BALL_RADIUS or ball.position.y > SCREEN_HEIGHT - BALL_RADIUS):
+            ball.velocity.y *= -1
 
         for drawable_object in drawable:
             drawable_object.draw(screen)
