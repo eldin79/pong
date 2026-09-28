@@ -69,6 +69,14 @@ def main():
             screen.blit(player_one_wins_text, text_rect_one)
             screen.blit(restart_text, restart_rect)
 
+        if player_one_wins or player_two_wins:
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_r]:
+                print("Restart game")
+                ball = Ball(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+                player_one_wins = False
+                player_two_wins = False
+
         for drawable_object in drawable:
             drawable_object.draw(screen)
 
