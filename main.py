@@ -25,6 +25,8 @@ def main():
     player_one = Player(PLAYER_X, PLAYER_Y, PLAYER_WIDTH, PLAYER_HEIGHT)
     player_two = Player(SCREEN_WIDTH - PLAYER_WIDTH - PLAYER_X, PLAYER_Y, PLAYER_WIDTH, PLAYER_HEIGHT, False)
     ball = Ball(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    player_one_wins = False
+    player_two_wins = False
 
     while running:
         for event in pygame.event.get():
@@ -42,6 +44,14 @@ def main():
 
         if ball.position.x > SCREEN_WIDTH - PLAYER_WIDTH - PLAYER_X - PLAYER_WIDTH / 2 and (ball.position.y >= player_two.position.y and ball.position.y <= player_two.position.y + PLAYER_HEIGHT):
             ball.velocity.x *= -1
+
+        if ball.position.x < 0 - BALL_RADIUS:
+            player_two_wins = True
+            print("Player Two Wins")
+
+        if ball.position.x > SCREEN_WIDTH + BALL_RADIUS:
+            player_one_wins = True
+            print("Player One Wins")
 
         for drawable_object in drawable:
             drawable_object.draw(screen)
