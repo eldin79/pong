@@ -2,7 +2,7 @@ import pygame
 
 from blockshape import BlockShape
 from circleshape import CircleShape
-from constants import PLAYER_SPEED
+from constants import *
 
 class Player(BlockShape):
     def __init__(self, x: float, y: float, width: float, height: float, facingRight: bool = True) -> None:
@@ -21,14 +21,18 @@ class Player(BlockShape):
         keys = pygame.key.get_pressed()
         if self.facingRight:
             if keys[pygame.K_w]:
-                self.move(-dt)
+                if self.position.y > 0:
+                    self.move(-dt)
             if keys[pygame.K_s]:
-                self.move(dt)
+                if self.position.y < SCREEN_HEIGHT - PLAYER_HEIGHT:
+                    self.move(dt)
         else:
             if keys[pygame.K_UP]:
-                self.move(-dt)
+                if self.position.y > 0:
+                    self.move(-dt)
             if keys[pygame.K_DOWN]:
-                self.move(dt)
+                if self.position.y < SCREEN_HEIGHT - PLAYER_HEIGHT:
+                    self.move(dt)
 
     def collides_with(self, other: "CircleShape") -> bool:
         distance = self.position.distance_to(other.position)
