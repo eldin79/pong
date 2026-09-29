@@ -25,6 +25,10 @@ def main():
     restart_rect = restart_text.get_rect()
     restart_rect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + RESTART_TEXT_ADJUST_Y)
 
+    quit_text = font.render("Press Q to quit", True, "blue")
+    quit_rect = quit_text.get_rect()
+    quit_rect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + QUIT_TEXT_ADJUST_Y)
+
     clock = pygame.time.Clock()
     dt = 0.0
     running = True
@@ -63,19 +67,22 @@ def main():
             player_two_wins = True
             screen.blit(player_two_wins_text, text_rect_two)
             screen.blit(restart_text, restart_rect)
+            screen.blit(quit_text, quit_rect)
 
         if ball.position.x > SCREEN_WIDTH + BALL_RADIUS:
             player_one_wins = True
             screen.blit(player_one_wins_text, text_rect_one)
             screen.blit(restart_text, restart_rect)
+            screen.blit(quit_text, quit_rect)
 
         if player_one_wins or player_two_wins:
             keys = pygame.key.get_pressed()
             if keys[pygame.K_r]:
-                print("Restart game")
                 ball = Ball(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
                 player_one_wins = False
                 player_two_wins = False
+            if keys[pygame.K_q]:
+                running = False
 
         for drawable_object in drawable:
             drawable_object.draw(screen)
