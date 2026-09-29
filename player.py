@@ -10,7 +10,12 @@ class Player(BlockShape):
         self.facingRight = facingRight
 
     def draw(self, screen: pygame.Surface) -> None:
-        pygame.draw.rect(screen, "white", (self.position.x, self.position.y, self.width, self.height))
+        color = ""
+        if self.facingRight:
+            color = "red"
+        else:
+            color = "green"
+        pygame.draw.rect(screen, color, (self.position.x, self.position.y, self.width, self.height))
 
     def move(self, dt: float) -> None:
         displacement_vector = pygame.Vector2(0, 1)

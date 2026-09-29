@@ -9,7 +9,7 @@ class Ball(CircleShape):
         self.velocity *= BALL_SPEED
 
     def draw(self, screen: pygame.Surface) -> None:
-        pygame.draw.circle(screen, "white", self.position, self.radius, LINE_WIDTH)
+        pygame.draw.circle(screen, "blue", self.position, self.radius, 0)
 
     def update(self, dt: float) -> None:
         self.position += self.velocity * dt
